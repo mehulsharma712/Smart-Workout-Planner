@@ -2,7 +2,6 @@ services:
   - type: web
     name: workout-ml-api
     env: python
-    region: singapore
     rootDir: ml
     buildCommand: pip install -r requirements.txt
     startCommand: python api.py
