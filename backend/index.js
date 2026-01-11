@@ -18,14 +18,13 @@ app.get("/",(req,res)=>{
 
 app.post("/recommend", async (req, res) => {
   try {
-    await axios.post(`${ML_API_URL}/predict`, {...});
-      {
-        goal: req.body.goal,
-        experience: req.body.experience,
-        days_per_week: Number(req.body.days_per_week),
-        time_per_session: Number(req.body.time_per_session),
-      }
-    );
+    await axios.post(`${ML_API_URL}/predict`, {
+  goal: req.body.goal,
+  experience: req.body.experience,
+  days_per_week: Number(req.body.days_per_week),
+  time_per_session: Number(req.body.time_per_session),
+});
+
 
     const WorkoutPlans={
       full_body :{
