@@ -16,23 +16,24 @@ app.get("/",(req,res)=>{
     res.render("form")
 })
 
-app.post("/recommend", async (req, res) => {
-  try {
-    const response = await axios.post(
-      `${process.env.ML_API_URL}/predict`,
-      {
+    app.post("/recommend", async (req, res) => {   // { ① route starts
+  try {                                       // { ② try starts
+    const response = await axios.post(        // ( ③ axios.post starts
+      `${process.env.ML_API_URL}/predict`,    // argument 1
+      {                                       // { ④ request body object
         goal: req.body.goal,
         experience: req.body.experience,
         days_per_week: Number(req.body.days_per_week),
         time_per_session: Number(req.body.time_per_session),
-      },
-      {
+      },                                      // } ④ body closed
+      {                                       // { ⑤ axios config object
         headers: {
           "Content-Type": "application/json",
         },
-        timeout: 15000, // 👈 REQUIRED for Render cold start
-      }
-    );
+        timeout: 15000,
+      }                                       // } ⑤ config closed
+    );                                        // ) ③ axios.post closed
+
 
     const predictedSplit = response.data.predicted_split;
     const workout = workoutPlans[predictedSplit];
