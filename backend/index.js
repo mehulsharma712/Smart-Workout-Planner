@@ -18,8 +18,7 @@ app.get("/",(req,res)=>{
 
 app.post("/recommend", async (req, res) => {
   try {
-    const response = await axios.post(
-      "http://127.0.0.1:5000/predict",
+    await axios.post(`${ML_API_URL}/predict`, {...});
       {
         goal: req.body.goal,
         experience: req.body.experience,
