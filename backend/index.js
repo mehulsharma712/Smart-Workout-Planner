@@ -5,6 +5,9 @@ const axios = require("axios");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+console.log("ML_API_URL =", process.env.ML_API_URL);
+
+
 // middleware
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
@@ -54,25 +57,29 @@ app.post("/recommend", async (req, res) => {
     );
 
     const predictedSplit = response.data.predicted_split;
-    const workout = workoutPlans[predictedSplit];
+    const Workout = WorkoutPlans[predictedSplit]; // ✅ FIXED
 
     res.render("result", { workout });
 
   } catch (error) {
-    console.error("AXIOS ERROR:", error.message);
+    console.log("===== AXIOS ERROR DEBUG =====");
+    console.log("Message:", error.message);
+
+    if (error.code) {
+      console.log("Error code:", error.code);
+    }
 
     if (error.response) {
-      console.error("ML STATUS:", error.response.status);
-      console.error("ML DATA:", error.response.data);
+      console.log("Status:", error.response.status);
+      console.log("Data:", error.response.data);
+    } else if (error.request) {
+      console.log("Request was sent but no response received");
     } else {
-      console.error("NO RESPONSE FROM ML");
+      console.log("Axios setup error");
     }
+
+    console.log("============================");
 
     res.send("Error communicating with ML service");
   }
-});
-
-// server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+}); // ✅ THIS WAS MISSING
