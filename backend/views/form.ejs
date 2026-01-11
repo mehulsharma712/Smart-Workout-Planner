@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("partials/header") %>
+
+<section class="card">
+  <h2>Get Your Personalized Workout</h2>
+
+  <form method="POST" action="/recommend" class="form">
+    <label><i class="fa-solid fa-bullseye"></i> Fitness Goal</label>
+    <select name="goal">
+      <option value="muscle_gain">Muscle Gain</option>
+      <option value="fat_loss">Fat Loss</option>
+      <option value="endurance">Endurance</option>
+    </select>
+
+    <label><i class="fa-solid fa-user"></i> Experience Level</label>
+    <select name="experience">
+      <option value="beginner">Beginner</option>
+      <option value="intermediate">Intermediate</option>
+      <option value="advanced">Advanced</option>
+    </select>
+
+    <label><i class="fa-solid fa-calendar-days"></i> Days per Week</label>
+    <input type="number" name="days_per_week" min="3" max="6" required>
+
+    <label><i class="fa-solid fa-clock"></i> Time per Session</label>
+    <input type="number" name="time_per_session" min="30" max="90" required>
+
+    <button class="btn-primary">Generate Plan</button>
+  </form>
+</section>
+
+<%- include("partials/footer") %>
+
+
+</body>
+</html>

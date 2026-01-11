@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("partials/header") %>
+
+<section class="card">
+  <h2><i class="fa-solid fa-fire"></i> <%= Workout.title %></h2>
+
+  <% Workout.days.forEach(day => { %>
+    <div class="day-card">
+      <h3><%= day.day %></h3>
+      <ul>
+        <% day.exercises.forEach(ex => { %>
+          <li><i class="fa-solid fa-check"></i> <%= ex %></li>
+        <% }) %>
+      </ul>
+    </div>
+  <% }) %>
+
+  <a href="/" class="btn-secondary">Try Another Plan</a>
+</section>
+
+<%- include("partials/footer") %>
+
+
+
+</body>
+</html>
