@@ -1,11 +1,14 @@
 import warnings
 warnings.filterwarnings("ignore")
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import joblib
 import pandas as pd
 
 # Initialize Flask app
 app = Flask(__name__)
+CORS(app)
+
 
 # Load trained model and encoders
 model = joblib.load("model.pkl")
